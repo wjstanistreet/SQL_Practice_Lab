@@ -65,7 +65,10 @@ SELECT * FROM matches WHERE (hometeam = 'Huddersfield' OR awayteam = 'Huddersfie
 8) How many draws were there in the Eredivisie between 2010 and 2015?
 
 ```sql
-<!-- Copy solution here -->
+SELECT code FROM divisions WHERE name = 'Eredivisie';
+-- Eredivisie code: N1
+
+SELECT COUNT(*) FROM matches WHERE (division_code = 'N1' AND ftr = 'D') AND (season BETWEEN 2010 AND 2015);
 
 
 ```
@@ -73,7 +76,7 @@ SELECT * FROM matches WHERE (hometeam = 'Huddersfield' OR awayteam = 'Huddersfie
 9) Select the matches played in the Premier League in order of total goals scored from highest to lowest. Where there is a tie the match with more home goals should come first.
 
 ```sql
-<!-- Copy solution here -->
+SELECT * FROM matches WHERE division_code = 'E0' ORDER BY (fthg + ftag) DESC, fthg DESC;
 
 
 ```
@@ -81,7 +84,9 @@ SELECT * FROM matches WHERE (hometeam = 'Huddersfield' OR awayteam = 'Huddersfie
 10) In which division and which season were the most goals scored?
 
 ```sql
-<!-- Copy solution here -->
+SELECT DISTINCT division_code, season, SUM(fthg + ftag) FROM matches 
+JOIN divisions ON divisions.code = matches.division_code 
+GROUP BY division_code, season ORDER BY SUM(fthg + ftag) DESC LIMIT 1;
 
 
 ```
