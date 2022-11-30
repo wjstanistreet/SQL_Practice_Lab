@@ -39,7 +39,7 @@ SELECT COUNT(*) FROM matches WHERE division_code = 'D1' AND (hometeam = 'Freibur
 5) Find the unique names of the teams which include the word "City" in their name (as entered in the database)
 
 ```sql
-SELECT DISTINCT hometeam AS "Unique 'city' team names" FROM matches WHERE LOWER(hometeam) LIKE LOWER('%city%')
+SELECT DISTINCT hometeam AS "Unique 'city' team names" FROM matches WHERE LOWER(hometeam) LIKE LOWER('%city%');
 
 
 ```
@@ -47,15 +47,17 @@ SELECT DISTINCT hometeam AS "Unique 'city' team names" FROM matches WHERE LOWER(
 6) How many different teams have played in matches recorded in a French division?
 
 ```sql
-<!-- Copy solution here -->
+SELECT code FROM divisions WHERE country = 'France';
+-- French divion codes: F1, F2
 
+SELECT DISTINCT hometeam AS "Distinct teams from French Leagues" FROM matches WHERE division_code = 'F1' OR division_code = 'F2';
 
 ```
 
 7) Have Huddersfield played Swansea in the period covered?
 
 ```sql
-<!-- Copy solution here -->
+SELECT * FROM matches WHERE (hometeam = 'Huddersfield' OR awayteam = 'Huddersfield') AND (hometeam = 'Swansea' OR awayteam = 'Swansea');
 
 
 ```
