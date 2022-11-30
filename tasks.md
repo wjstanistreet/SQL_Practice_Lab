@@ -84,9 +84,7 @@ SELECT * FROM matches WHERE division_code = 'E0' ORDER BY (fthg + ftag) DESC, ft
 10) In which division and which season were the most goals scored?
 
 ```sql
-SELECT DISTINCT division_code, season, SUM(fthg + ftag) FROM matches 
-JOIN divisions ON divisions.code = matches.division_code 
-GROUP BY division_code, season ORDER BY SUM(fthg + ftag) DESC LIMIT 1;
+SELECT DISTINCT division_code, season, SUM(fthg + ftag) FROM matches GROUP BY division_code, season ORDER BY SUM(fthg + ftag) DESC LIMIT 1;
 
 
 ```
