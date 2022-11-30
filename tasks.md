@@ -50,7 +50,7 @@ SELECT DISTINCT hometeam AS "Unique 'city' team names" FROM matches WHERE LOWER(
 SELECT code FROM divisions WHERE country = 'France';
 -- French divion codes: F1, F2
 
-SELECT DISTINCT hometeam AS "Distinct teams from French Leagues" FROM matches WHERE division_code = 'F1' OR division_code = 'F2';
+SELECT COUNT(DISTINCT hometeam) AS "Number of distinct teams from French leagues" FROM matches WHERE division_code = 'F1' OR division_code = 'F2';
 
 ```
 
@@ -68,7 +68,7 @@ SELECT * FROM matches WHERE (hometeam = 'Huddersfield' OR awayteam = 'Huddersfie
 SELECT code FROM divisions WHERE name = 'Eredivisie';
 -- Eredivisie code: N1
 
-SELECT COUNT(*) FROM matches WHERE (division_code = 'N1' AND ftr = 'D') AND (season BETWEEN 2010 AND 2015);
+SELECT COUNT(*) AS "Number of draws in the Eredivisie between 2010 and 2015" FROM matches WHERE (division_code = 'N1' AND ftr = 'D') AND (season BETWEEN 2010 AND 2015);
 
 
 ```
